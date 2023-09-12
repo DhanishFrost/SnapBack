@@ -27,7 +27,7 @@ export default defineConfig({
             "purpose": "maskable"
           },
           {
-            "src": "/src/assets/icons/Logo.png",
+            "src": "/src/assets/icons/google.png",
             "sizes": "512x512",
             "type": "image/png"
           },
