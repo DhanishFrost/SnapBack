@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'SnapBack',
         short_name: 'SnapBack',
         description: 'A gaming web application',
-        start_url: '/',
+        start_url: '/SnapBack/',
         scope: '/SnapBack/',
         orientation: 'portrait',
         display: 'standalone',
