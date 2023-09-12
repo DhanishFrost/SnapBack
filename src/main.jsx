@@ -4,15 +4,15 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/SnapBack/service-worker.js', {
-    scope: '/SnapBack/'
-  }).then(function(registration) {
-    console.log('Service Worker registered with scope:', registration.scope);
-  }).catch(function(error) {
-    console.error('Service Worker registration failed:', error);
-  });
-}
+// if ('serviceWorker' in navigator) {
+//   navigator.serviceWorker.register('/SnapBack/service-worker.js', {
+//     scope: '/SnapBack/'
+//   }).then(function(registration) {
+//     console.log('Service Worker registered with scope:', registration.scope);
+//   }).catch(function(error) {
+//     console.error('Service Worker registration failed:', error);
+//   });
+// }
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
