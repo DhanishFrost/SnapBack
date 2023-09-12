@@ -21,13 +21,13 @@ export default defineConfig({
         prefer_related_applications: true,
         icons: [
           {
-            "src": "/src/assets/icons/google.png",
+            "src": "/src/assets/icons/icon192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "maskable"
           },
           {
-            "src": "/src/assets/icons/google.png",
+            "src": "/src/assets/icons/icon512.png",
             "sizes": "512x512",
             "type": "image/png"
           },
