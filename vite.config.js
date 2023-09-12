@@ -18,15 +18,16 @@ export default defineConfig({
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#000000',
+        prefer_related_applications: true,
         icons: [
           {
-            "src": "/icons/maskable-icon.png",
+            "src": "/src/assets/icons/google.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "maskable"
           },
           {
-            "src": "/icons/android-chrome-512x512.png",
+            "src": "/src/assets/icons/Logo.png",
             "sizes": "512x512",
             "type": "image/png"
           },
