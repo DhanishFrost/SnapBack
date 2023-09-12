@@ -20,10 +20,10 @@ export default defineConfig({
         theme_color: '#000000',
         icons: [
           {
-            src: '/icons/android-chrome-192x192.png',
+            src: '/icons/maskable-icon.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'maskable',
           },
         ],
         icons: [
