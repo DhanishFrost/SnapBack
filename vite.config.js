@@ -20,14 +20,6 @@ export default defineConfig({
         theme_color: '#000000',
         icons: [
           {
-            src: '/icons/maskable-icon.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
-        ],
-        icons: [
-          {
             "src": "/icons/maskable-icon.png",
             "sizes": "192x192",
             "type": "image/png",
