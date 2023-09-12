@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/SnapBack/',
+  base: './',
   plugins: [
     react(),
     VitePWA({
@@ -13,7 +13,7 @@ export default defineConfig({
         short_name: 'SnapBack',
         description: 'A gaming web application',
         start_url: '/SnapBack/',
-        scope: '/SnapBack/',
+        scope: './',
         orientation: 'portrait',
         display: 'standalone',
         background_color: '#ffffff',
