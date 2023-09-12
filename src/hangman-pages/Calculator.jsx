@@ -22,10 +22,6 @@ function Calculator() {
         setResult('');
     };
 
-    const handleButtonNextPage = () => {
-        window.location.href = "https://www.google.com";
-    };
-
     return (
         <div className="max-w-md mx-auto mt-8">
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
