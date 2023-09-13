@@ -19,9 +19,9 @@ function App() {
       </div>
       <div>
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/calculator" element={<Calculator />} />
-          <Route path="/games/hangman" element={<HangManGame />} />
+          <Route path="/SnapBack/home" element={<Home />} />
+          <Route path="/SnapBack/calculator" element={<Calculator />} />
+          <Route path="/SnapBack/games/hangman" element={<HangManGame />} />
         </Routes>
       </div>
 
