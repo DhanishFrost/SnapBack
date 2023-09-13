@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/SnapBack/home" element={<Home />} />
           <Route path="/SnapBack/calculator" element={<Calculator />} />
-          <Route path="/SnapBack/games/hangman" element={<HangManGame />} />
+          <Route path="/SnapBack/hangman" element={<HangManGame />} />
         </Routes>
       </div>
 

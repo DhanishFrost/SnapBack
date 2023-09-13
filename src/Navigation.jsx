@@ -7,7 +7,7 @@ function Navigation() {
             <div>
                 <Link to="/SnapBack/home" className="text-white mr-4">Home</Link>
                 <Link to="/SnapBack/calculator" className="text-white mr-4">Calculator</Link>
-                <Link to="/SnapBack/games/hangman" className="text-white mr-4">Hangman</Link>                
+                <Link to="/SnapBack/hangman" className="text-white mr-4">Hangman</Link>                
             </div>
         </div>
     );
