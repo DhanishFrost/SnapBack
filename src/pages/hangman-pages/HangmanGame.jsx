@@ -47,7 +47,7 @@ function HangmanGame() {
 
   return (
     <div className="App">
-      <h1>Hangman Game</h1>
+      <h1 className='max-lg:text-center text-white lg:text-4xl text-3xl lg:ml-80 mt-6 font-semibold'>Hangman Game</h1>
       <GameBoard
         wordToGuess={wordToGuess}
         guessedLetters={guessedLetters}

@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import Calculator from './hangman-pages/Calculator';
-import Home from './hangman-pages/Home';
+import Calculator from './pages/hangman-pages/Calculator';
+import Home from './pages/hangman-pages/Home';
 import Navigation from './Navigation'
 import './index.css'
-import HangManGame from './hangman-pages/HangmanGame';
+import HangManGame from './pages/hangman-pages/HangmanGame';
 
 
 function App() {
+
   
   return (
 

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import correctSound from '/correct.mp3';
+import wrongSound from '/incorrect.mp3';
 
 function Calculator() {
     const [input, setInput] = useState('');
