@@ -59,7 +59,7 @@ function GameBoard({ wordToGuess, guessedLetters, incorrectGuesses, onNewGame, o
               ))}
             </span>
           </div>
-          <div className="lg:mx-80 mt-4 grid grid-cols-8">
+          <div className="lg:mx-80 mt-4 grid grid-cols-8 max-lg:grid max-lg:grid-cols-6">
             {'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => {
               const isGuessed = guessedLetters.includes(letter);
               const isIncorrect = incorrectGuesses.includes(letter);
