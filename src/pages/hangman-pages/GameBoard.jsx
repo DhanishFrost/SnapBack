@@ -6,6 +6,7 @@ import HangmanDrawing from "./HangmanDrawing";
 function GameBoard({ wordToGuess, guessedLetters, incorrectGuesses, onNewGame, onGuess, gameStatus }) {
   const correctAudio = useRef(null);
   const incorrectAudio = useRef(null);
+  const baseUrl = process.env.NODE_ENV === 'development' ? '/' : '/SnapBack/';
 
   const playCorrectAudio = () => {
     if (correctAudio.current) {
@@ -82,8 +83,8 @@ function GameBoard({ wordToGuess, guessedLetters, incorrectGuesses, onNewGame, o
               );
             })}
           </div>
-          <audio ref={correctAudio} src="/correct.mp3"></audio>
-          <audio ref={incorrectAudio} src="/incorrect.mp3"></audio>
+          <audio ref={correctAudio} src={`${baseUrl}correct.mp3`}></audio>
+          <audio ref={incorrectAudio} src={`${baseUrl}incorrect.mp3`}></audio>
         </div>
 
 
