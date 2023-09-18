@@ -29,7 +29,7 @@ export default function Login({ loggedIn, onLogin }) {
 
             onLogin(true);
             localStorage.setItem("authToken", true);
-            navigate("/SnapBack/home");
+            navigate("/SnapBack/");
         }  catch (error) {
             switch (error.code) {
                 case "auth/invalid-login-credentials":
