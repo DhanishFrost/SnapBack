@@ -1,63 +1,73 @@
-import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Calculator from './pages/hangman-pages/Calculator';
-import Home from './pages/hangman-pages/Home';
-import Navigation from './Navigation'
-import './index.css'
-import HangManGame from './pages/hangman-pages/HangmanGame';
-
+import React, { useState, useEffect } from 'react';
+import { Routes, useNavigate } from 'react-router-dom';
+import NavigationLayout from './Layout/NavigationLayout';
+import AppRoutes from './Routes';
+import './index.css';
+import { auth } from './firebase_setup/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import LogoutConfirmationModal from './pages/auth/LogoutConfirmationModal';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('authToken') === 'true');
+  const [user, setUser] = useState(null);
+  const [logoutConfirmationOpen, setLogoutConfirmationOpen] = useState(false);
+  const navigate = useNavigate();
 
-  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is logged in
+        setUser(user);
+        setLoggedIn(true);
+        localStorage.setItem('authToken', true);
+      } else {
+        // User is not logged in
+        setUser(null);
+        setLoggedIn(false);
+        localStorage.removeItem('authToken');
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    setLogoutConfirmationOpen(true);
+  };
+
+  const confirmLogout = async () => {
+    try {
+      await auth.signOut();
+      setUser(null);
+      setLoggedIn(false);
+      localStorage.removeItem('authToken');
+      navigate("/SnapBack/home");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLogoutConfirmationOpen(false);
+    }
+  };
+
   return (
-
     <div>
       <div>
-        <Navigation />
+        <NavigationLayout loggedIn={loggedIn} onLogin={setLoggedIn} handleLogout={handleLogout} />
       </div>
       <div>
-        <Routes>
-          <Route path="/SnapBack/home" element={<Home />} />
-          <Route path="/SnapBack/calculator" element={<Calculator />} />
-          <Route path="/SnapBack/hangman" element={<HangManGame />} />
-        </Routes>
+        <AppRoutes loggedIn={loggedIn} onLogin={setLoggedIn}/>  
       </div>
-
+      {logoutConfirmationOpen && (
+        <div className="modal-overlay">
+          <LogoutConfirmationModal
+            isOpen={logoutConfirmationOpen}
+            onRequestClose={() => setLogoutConfirmationOpen(false)}
+            onConfirm={confirmLogout}
+          />
+          </div>
+      )}
     </div>
   );
 }
 
-
-// const navigate = useNavigate();
-
-// const navigateToHome = () => {
-//   navigate('/home');
-// };
-
-// const navigateToCalculator = () => {
-//   navigate('/calculator');
-// };
-
-// return (
-//   <>
-//     <div>
-//       <Navigation />
-//       <button onClick={navigateToHome}>Go to Home</button>
-//       <button onClick={navigateToCalculator}>Go to Calculator</button>
-//     </div>
-//     <div>
-//       <Routes>
-//         <Route path="/home" element={<Home />} />
-//         <Route path="/calculator" element={<Calculator />} />
-//       </Routes>
-//     </div>
-
-//   </>
-// );
-
-
-
-export default App
+export default App;

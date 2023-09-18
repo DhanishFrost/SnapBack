@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GameBoard from './GameBoard';
 import { RandomWordAndHint } from './RandomWordsAndHint';
+import { collection, addDoc, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase_setup/firebase";
 
 function HangmanGame() {
   const [wordToGuess, setWordToGuess] = useState('');
@@ -58,11 +60,56 @@ function HangmanGame() {
       newGame();
       return 'ongoing';
     } else if (incorrectGuesses.length >= maxAttempts) {
-      return 'game over';
+      saveUserScore();
+      return 'gameover';
     } else {
       return 'ongoing';
     }
   };
+
+  const saveUserScore = async () => {
+    const user = auth.currentUser;
+    const userDocRef = doc(db, "user_scores", user.uid);
+    const userDocSnapshot = await getDoc(userDocRef);
+    
+    if (userDocSnapshot.exists()) {
+      const userData = userDocSnapshot.data();
+      
+      if (!Array.isArray(userData.score)) {
+        userData.score = [];
+      }
+      
+      const newScore = {
+        score: score,
+        timestamp: new Date().toISOString(),
+      };
+  
+      userData.score.push(newScore); 
+  
+      await updateDoc(userDocRef, {
+        score: userData.score, 
+      });
+  
+      console.log("Score saved successfully!");
+    } else if (score === 0) {
+      console.error("Error saving score: Score is not higher.");
+    } else {
+      const newUserData = {
+        name: user.displayName,
+        email: user.email,
+        score: [{ 
+          score: score,
+          timestamp: new Date().toISOString(),
+        }],
+      };
+  
+      await setDoc(userDocRef, newUserData);
+  
+      console.log("New user document created with score!");
+    }
+  };
+  
+  
 
 
   return (

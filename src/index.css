@@ -7,6 +7,8 @@
   background-color: #1a1a1a;
 }
 
+
+
 /* 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -92,3 +94,12 @@ button:focus-visible {
 .hangman-part.animated {
   transition: stroke 0.5s ease-in-out, fill 0.5s ease-in-out;
 }
+
+.btn2 span:first-child{
+  transform: translateX(-101%);
+  transition: transform .3s ease-in
+}
+.btn2:hover span{
+  transform: translateX(0)
+}
+

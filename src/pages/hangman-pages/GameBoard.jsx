@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import WordDisplay from "./WordDisplay";
 import HangmanDrawing from "./HangmanDrawing";
+import { Link } from 'react-router-dom';
+
 
 function GameBoard({
   wordToGuess,
@@ -41,18 +43,20 @@ function GameBoard({
     } else {
       playIncorrectAudio();
 
-      if (gameStatus() === 'game over') {
+      if (gameStatus() === 'gameover') {
         resetScore();
       }
     }
   };
 
+
+
   return (
     <div className="p-4 rounded-lg">
-      {gameStatus() === 'game over' && (
-        <div className=" text-2xl font-semibold">
-          <div className="text-red-600 flex">
-            Game Over! The word was: <p className="uppercase lg:ml-3">{wordToGuess}</p>
+      {gameStatus() === 'gameover' && (
+        <div className="text-lg lg:text-2xl font-semibold lg:text-center">
+          <div className="text-red-600 flex lg:justify-center">
+            Game Over! The word was: <p className="uppercase ml-3 ">{wordToGuess}</p>
           </div>
           <div className="text-white flex-1">
             <p>Your score :  {score} points</p>
@@ -63,6 +67,7 @@ function GameBoard({
       {gameStatus() === 'ongoing' && (
         <div>
           <HangmanDrawing incorrectGuesses={incorrectGuesses} />
+          
           <div className="lg:flex lg:justify-between lg:mr-80">
             <div>
               <WordDisplay wordToGuess={wordToGuess} guessedLetters={guessedLetters} />
@@ -117,13 +122,16 @@ function GameBoard({
           <audio ref={incorrectAudio} src={`${baseUrl}incorrect.mp3`}></audio>
         </div>
       )}
-      {gameStatus() === 'game over' && (
-        <button
-          onClick={onNewGame}
-          className="lg:ml-80 mt-6 py-2 px-8 border-2 font-semibold border-green-500 text-white rounded hover:bg-green-600"
-        >
-          New Game
-        </button>
+      {gameStatus() === 'gameover' && (
+        <div className="lg:text-center">
+          <button
+            onClick={onNewGame}
+            className=" mt-6 py-2 px-8 border-2 font-semibold border-green-500 text-white rounded hover:bg-green-600"
+          >
+            New Game
+          </button>
+        </div>
+
       )}
     </div>
   );

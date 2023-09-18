@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -12,8 +13,11 @@ export default {
       textColor: {
         'dark': '#ffffff', 
       },
+
     },
-    plugins: [],
+    plugins: [
+      require('daisyui')
+    ],
   }
 }
 
