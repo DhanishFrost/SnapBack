@@ -10,6 +10,7 @@ export default function Register() {
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const navigate = useNavigate();
+    const baseUrl = process.env.NODE_ENV === "development" ? "/" : "/SnapBack/";
 
     const onSubmit = async (data) => {
         try {
@@ -74,7 +75,7 @@ export default function Register() {
 
         <div className="bg-black flex flex-col md:flex-row h-screen items-center">
 
-            <img src="/signup1.jpg" alt="Singupimage" className=" max-md:w-full w-7/12 h-full object-cover brightness-75" />
+            <img src={`${baseUrl}signup1.jpg`}  alt="Singupimage" className=" max-md:w-full w-7/12 h-full object-cover brightness-75" />
             <div className="absolute top-0 left-0 w-7/12 h-full flex items-center justify-center">
                 <div className="text-white">
                     <span className="font-[playfairdisplay] text-white text-7xl max-md:hidden font-normal">Shadow Realm Retreat</span><br /><br />
@@ -85,7 +86,7 @@ export default function Register() {
 
             <div className="w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
                 <div className="w-full h-100">
-                    <img className="max-lg:w-16 w-24 mx-auto max-md:relative max-lg:bottom-12" src="/Snapback-Logo.png" alt="SnapBack Logo" />
+                    <img className="max-lg:w-16 w-24 mx-auto max-md:relative max-lg:bottom-12" src={`${baseUrl}/Snapback-Logo.png`} alt="SnapBack Logo" />
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-6 max-md:relative max-md:bottom-16">
                         <h1
                             className="font-[poppins] text-gray-200 text-center text-xl md:text-2xl font-semibold leading-tight mb-6 mt-10 max-md:mb-6 max-md:mt-6">

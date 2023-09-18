@@ -24,6 +24,8 @@ function TypewriterText({ text }) {
   return <p className='lg:mr-56 font-sans text-lg md:text-xl mt-4 text-gray-300 max-w-3xl'>{displayedText}</p>;
 }
 
+const baseUrl = process.env.NODE_ENV === "development" ? "/" : "/SnapBack/";
+
 export default function Home() {
   return (
     <>
@@ -35,7 +37,7 @@ export default function Home() {
             loop
             muted
             className="absolute inset-0 w-full h-full object-cover brightness-75"
-            src="/intro.mp4"
+            src={`${baseUrl}intro.mp4`}
           ></video>
 
           {/* Content */}
@@ -66,7 +68,7 @@ export default function Home() {
         <div className="md:grid md:grid-rows-2 mb-12 grid-cols-3 gap-10 mt-6 lg:mt-24 max-lg:mx-2 lg:mx-36">
           <div className='relative col-span-2 h-96 group'>
             <img
-              src="/homecod.jpg"
+              src={`${baseUrl}homecod.jpg`}
               alt="COD"
               className="border border-gray-600 brightness-50 rounded-md w-full h-full object-cover transition-transform ease-in-out transform scale-100 group-hover:scale-105"
             />
@@ -83,13 +85,13 @@ export default function Home() {
           <div className="text-white row-span-2 col-span-1">
             <h2 className='uppercase font-[impact] text-5xl max-lg:mt-6'>News</h2>
             <hr className="mb-4 mt-2 border-t-2 border-gray-300" />
-            <img src="/assassins-creed-valhalla.jpg" alt="Assassins creed image" className='w-full object-cover' />
+            <img src={`${baseUrl}assassins-creed-valhalla.jpg`} alt="Assassins creed image" className='w-full object-cover' />
             <h2 className='text-2xl lg:text-4xl mt-3 md:text-3xl font-thin font-[impact]'>
               Top Games : Everything You Need To Know
             </h2>
             <hr className="my-5 border-t-2 border-gray-300" />
             <div className='flex'>
-              <img src="/assassins-creed-valhalla.jpg" alt="Assassins creed image" className='object-cover w-36' />
+              <img src={`${baseUrl}assassins-creed-valhalla.jpg`} alt="Assassins creed image" className='object-cover w-36' />
               <div>
                 <h1 className='text-xl font-light tracking-wide ml-4 font-[impact]'>Assassin's Creed Valhalla</h1>
                 <p className=' font-serif tracking-wide ml-4 mt-2'>Embark on epic Viking adventures during the 9th century in England.</p>
@@ -97,7 +99,7 @@ export default function Home() {
             </div>
             <hr className="my-6 border-t-2 border-gray-300" />
             <div className='flex'>
-              <img src="/forza5.jpg" alt="Forza 5 image" className='object-cover w-36' />
+              <img src={`${baseUrl}forza5.jpg`} alt="Forza 5 image" className='object-cover w-36' />
               <div>
                 <h1 className='text-xl font-light tracking-wide ml-4 font-[impact]'>Forze Horizon 5</h1>
                 <p className=' font-serif tracking-wide ml-4 mt-2'>Race through stunning landscapes in the world's most exotic cars.</p>
@@ -105,7 +107,7 @@ export default function Home() {
             </div>
             <hr className="my-6 border-t-2 border-gray-300" />
             <div className='flex'>
-              <img src="/rdr2.jpg" alt="RDR 2 image" className='object-cover w-36' />
+              <img src={`${baseUrl}rdr2.jpg`} alt="RDR 2 image" className='object-cover w-36' />
               <div>
                 <h1 className='text-xl font-light tracking-wide ml-4 font-[impact]'>Red Dead Redemption 2</h1>
                 <p className=' font-serif tracking-wide ml-4 mt-2'>Step into an untamed Wild West filled with outlaws and gunfights.</p>
@@ -115,7 +117,7 @@ export default function Home() {
 
           </div>
           <div className='relative group max-lg:mt-8 rounded-md'>
-            <img src="/spiderman.jpg" alt="Your Image" className="brightness-75 w-full h-full object-cover transition-transform ease-in-out transform scale-100 group-hover:scale-105" />
+            <img src={`${baseUrl}spiderman.jpg`} alt="Your Image" className="brightness-75 w-full h-full object-cover transition-transform ease-in-out transform scale-100 group-hover:scale-105" />
             <div className="absolute inset-0 flex flex-col justify-center ml-8 text-white">
               <p className="max-lg:text-xl text-2xl font-semibold font-[impact] tracking-wide">SNAPBACK</p>
               <p className="max-lg:text-2xl text-4xl font-thin font-[impact] mt-4">Embrace the Challenge, Take the Fight with You!</p>
@@ -132,7 +134,7 @@ export default function Home() {
           </div>
 
           <div className='relative group max-lg:mt-6 rounded-md'>
-            <img src="/cod2nd.webp" alt="Your Image" className="brightness-75 w-full h-full object-cover transition-transform ease-in-out transform scale-100 group-hover:scale-105" />
+            <img src={`${baseUrl}cod2nd.webp`} alt="Your Image" className="brightness-75 w-full h-full object-cover transition-transform ease-in-out transform scale-100 group-hover:scale-105" />
             <div className="absolute inset-0 flex flex-col justify-center ml-8 text-white">
               <p className="max-lg:text-xl text-2xl font-semibold font-[impact] tracking-wide">SNAPBACK</p>
               <p className="max-lg:text-2xl text-4xl font-thin font-[impact] mt-4">Unlock Your Gaming Potential, Conquer the Virtual Realm!.</p>
@@ -178,8 +180,8 @@ export default function Home() {
               <div className="w-[400px] lg:w-[900px] h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
             </div>
             <div className='flex space-x-12'>
-              <img className="w-20" src="/Snapback-Logo.png" alt="SnapBack Logo" />
-              <img className="w-36" src="/esrb.svg" alt="ESRB Logo" />
+              <img className="w-20" src={`${baseUrl}Snapback-Logo.png`} alt="SnapBack Logo" />
+              <img className="w-36" src={`${baseUrl}esrb.svg`} alt="ESRB Logo" />
             </div>
             <div className="relative mb-10 m-8 flex items-center mx-auto">
               <div className="w-[400px] lg:w-[900px] h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>

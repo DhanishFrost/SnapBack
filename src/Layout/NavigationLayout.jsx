@@ -14,14 +14,15 @@ export default function Navigation({ loggedIn, onLogin, handleLogout }) {
     if (shouldHideNavigation) {
         return null;
       }
-    
+    const baseUrl = process.env.NODE_ENV === "development" ? "/" : "/SnapBack/";
+
 
     return (
         <div>
             <nav className="bg-black p-4">
                 <div className="container mx-auto flex justify-between items-center">
                     <Link to="/SnapBack/home">
-                        <img className="w-12 h-12" src="/Snapback-Logo.png" alt="SnapBack Logo" />
+                        <img className="w-12 h-12" src={`${baseUrl}Snapback-Logo.png`} alt="SnapBack Logo" />
                     </Link>
                     <button
                         onClick={toggleMobileMenu}

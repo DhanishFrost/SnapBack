@@ -5,6 +5,7 @@ import { db } from '../../firebase_setup/firebase';
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const baseUrl = process.env.NODE_ENV === "development" ? "/" : "/SnapBack/";
 
     useEffect(() => {
         async function fetchLeaderboardData() {
@@ -70,9 +71,9 @@ function Leaderboard() {
                     {leaderboardData.map((userData, index) => (
                         <tr key={userData.id} className='rounded-lg bg-gray-700/30 text-center font-[poppins] text-lg'>
                             <td className="py-2 px-4">
-                                {index === 0 && <img src="/gold.png" alt="Gold Medal" className="w-7 inline-block mr-2" />}
-                                {index === 1 && <img src="/silver.png" alt="Silver Medal" className="w-7 inline-block mr-2" />}
-                                {index === 2 && <img src="/bronze.png" alt="Bronze Medal" className="w-7 inline-block mr-2" />}
+                                {index === 0 && <img src={`${baseUrl}gold.png`} alt="Gold Medal" className="w-7 inline-block mr-2" />}
+                                {index === 1 && <img src={`${baseUrl}silver.png`} alt="Silver Medal" className="w-7 inline-block mr-2" />}
+                                {index === 2 && <img src={`${baseUrl}bronze.png`} alt="Bronze Medal" className="w-7 inline-block mr-2" />}
                                 {index + 1}</td>
                             <td className="py-2 px-4">
                                 {userData.name}
