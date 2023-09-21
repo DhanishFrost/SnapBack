@@ -82,13 +82,17 @@ function Profile() {
           >
             Sign Out
           </button>
+          <ProfilePhoto user={user} />
           <div className="mt-8">
             <h2 className="text-2xl font-semibold text-white mb-4">Your Past Games</h2>
             {pastGames.length > 0 ? (
               <ul className="text-white">
                 {pastGames.map((game, index) => (
-                  <li key={index} className="mb-2">
-                    Game {index + 1}: Score {game.score}
+                  <li key={index} className="mb-2 py-2 inline-block ml-24">
+                    <div className="bg-gray-500/50 inline px-4 py-1 rounded-md mr-2 text-lg font-[poppins]">
+                      Game {index + 1}:
+                    </div>
+                    <span className='text-lg font-[poppins]'> Score {game.score}</span>
                   </li>
                 ))}
               </ul>
@@ -96,8 +100,9 @@ function Profile() {
               <p className="text-white">You haven't played any games yet.</p>
             )}
           </div>
+
           <div className="mt-8">
-            <ProfilePhoto user={user} />
+
             <EditProfile />
             <UpdatePassword />
             <DeleteAccount />

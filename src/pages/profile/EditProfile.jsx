@@ -53,7 +53,7 @@ function EditProfile() {
 
             await sendEmailVerification(auth.currentUser, actionCodeSettings);
 
-            setVerificationSent(true); 
+            setVerificationSent(true);
 
             console.log('Email verification link sent to the new email address.');
         } catch (error) {
@@ -77,19 +77,32 @@ function EditProfile() {
 
     return (
         <div >
-            <h2 className='text-white'>Edit Profile</h2>
-            <form>
-                <label className='text-white'>
-                    Display Name:
-                    <input className='text-black'
-                        type="text"
-                        value={displayName}
-                        onChange={(e) => setDisplayName(e.target.value)}
-                    />
-                </label>
-                <br />
-                <button className='text-white' type="button" onClick={handleUpdateDisplayName}>Update Display Name</button>
-            </form>
+            <div className="mt-8">
+                <h2 className="text-2xl font-semibold text-white mb-4">Edit Profile</h2>
+                <form>
+                    <div className="mb-4">
+                        <label className="text-white block">
+                            Display Name:
+                            <input
+                                className="border-2 border-black text-black rounded px-3 py-2"
+                                type="text"
+                                value={displayName}
+                                onChange={(e) => setDisplayName(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div className="mb-4">
+                        <button
+                            className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                            type="button"
+                            onClick={handleUpdateDisplayName}
+                        >
+                            Update Display Name
+                        </button>
+                    </div>
+                </form>
+            </div>
+
             {/* <form>
                 <label className='text-white'>
                     Email:
