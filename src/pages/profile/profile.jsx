@@ -71,24 +71,39 @@ function Profile() {
   return (
     <div className="text-center py-8">
       {user ? (
-        <div>
+        <div className="font-[poppins]">
           <h1 className="text-3xl font-semibold text-white mb-4">
             Welcome, {user.name}
           </h1>
           <p className="text-white text-lg">Email: {user.email}</p>
-          <button
+          <div className='lg:flex items-center justify-center text-center'>
+            <div className='mb-2 lg:mr-10'>
+              <ProfilePhoto user={user} />
+            </div>
+            <div>
+
+              {/* <button
             onClick={handleSignOut}
             className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
           >
             Sign Out
-          </button>
-          <ProfilePhoto user={user} />
+          </button> */}
+
+
+              <div className="mt-8">
+
+                <EditProfile />
+                <UpdatePassword />
+                <DeleteAccount />
+              </div>
+            </div>
+          </div>
           <div className="mt-8">
             <h2 className="text-2xl font-semibold text-white mb-4">Your Past Games</h2>
             {pastGames.length > 0 ? (
               <ul className="text-white">
                 {pastGames.map((game, index) => (
-                  <li key={index} className="mb-2 py-2 inline-block ml-24">
+                  <li key={index} className="mb-2 py-2 lg:inline-block lg:ml-24">
                     <div className="bg-gray-500/50 inline px-4 py-1 rounded-md mr-2 text-lg font-[poppins]">
                       Game {index + 1}:
                     </div>
@@ -100,14 +115,8 @@ function Profile() {
               <p className="text-white">You haven't played any games yet.</p>
             )}
           </div>
-
-          <div className="mt-8">
-
-            <EditProfile />
-            <UpdatePassword />
-            <DeleteAccount />
-          </div>
         </div>
+
       ) : (
         <div>
           <h1 className="text-3xl font-semibold text-white mb-4">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import Webcam from "react-webcam";
@@ -14,6 +14,7 @@ export default function ProfilePhoto({ user }) {
   const navigate = useNavigate();
   const [isCameraModalOpen, setIsCameraModalOpen] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
+  const [selectedImageName, setSelectedImageName] = useState("");
 
   useEffect(() => {
     getUserProfilePictureUrl(user.uid).then((url) => {
@@ -24,7 +25,10 @@ export default function ProfilePhoto({ user }) {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setProfilePicture(selectedFile);
+    setSelectedImageName(selectedFile.name);
+
   };
+
 
   const uploadProfilePicture = async (userId, picture) => {
     try {
@@ -93,33 +97,37 @@ export default function ProfilePhoto({ user }) {
     try {
       const storage = getStorage();
       const storageRef = ref(storage, `profilePictures/${userId}/profile-picture.jpg`);
-  
+
       // Check if the profile picture exists
       try {
         await getDownloadURL(storageRef);
       } catch (error) {
         if (error.code === "storage/object-not-found") {
           console.log('Profile picture not found');
-          return false; 
+          return false;
         }
       }
-  
+
       // If it exists, delete the profile picture
       await deleteObject(storageRef);
       console.log('Deleted profile picture successfully');
-      return true; 
+      setDownloadURL("");
+      navigate("/SnapBack/profile");
+      setShowOptions(false);
+      return true;
     } catch (error) {
       console.error("Error deleting profile picture:", error);
-      return false; 
+      return false;
     }
   };
-  
+
 
   const handleUpload = async () => {
     try {
       if (profilePicture) {
         const pictureUrl = await uploadProfilePicture(user.uid, profilePicture);
-        navigate("/SnapBack/profile");
+        setShowOptions(false);
+        setError("");
       } else {
         setError("Please select or capture a profile picture before uploading.");
       }
@@ -138,43 +146,87 @@ export default function ProfilePhoto({ user }) {
 
   return (
     <div className="container text-white">
-      <h1>Upload Profile Photo</h1>
-      {error && <p className="text-red-500 text-lg">{error}</p>}
       <div>
         {/* Profile picture element that toggles options */}
-        <div className="profile-picture" onClick={handleProfilePictureClick}>
-          {/* Display the profile picture or a placeholder */}
+        <div className="flex flex-col items-center justify-center text-center" onClick={handleProfilePictureClick}>
           {downloadURL ? (
             <img
               src={downloadURL}
               alt="Profile"
-              width="150"
-              height="150"
-              className="rounded-[2000px]"
+              className="max-lg:mt-3 max-lg:rounded-full max-lg:w-32 max-lg:h-32 w-64 h-64 rounded-lg object-cover"
             />
           ) : (
-            <div className="w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center">
+            <div className="max-lg:rounded-full max-lg:w-32 max-lg:h-32 w-64 h-64 rounded-lg bg-gray-500 flex items-center justify-center">
               <span>Click to add a photo</span>
             </div>
           )}
+
         </div>
-        {/* Options */}
         {showOptions && (
-          <div className="options">
-            <button onClick={() => document.getElementById("fileInput").click()}>Choose from Gallery</button>
-            <button onClick={openCameraModal}>Use Camera</button>
-            {downloadURL && (
-              <button onClick={() => deleteProfilePicture(user.uid)} className="bg-red-500 text-white rounded-md mt-4">
-                Delete Profile Picture
-              </button>
-            )}
-            <button onClick={handleUpload} disabled={uploading}>
-              {uploading ? "Uploading..." : "Upload"}
-            </button>
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 font-[poppins]">
+            <div className="bg-gray-900 border rounded-lg shadow-md w-96">
+              <div className="p-4">
+                <h2 className="text-xl font-semibold">Upload Profile Photo</h2>
+              </div>
+              {error && <p className="text-red-500 text-lg">{error}</p>}
+              {/* Display the selected image name */}
+              {selectedImageName && (
+                <div className="px-4 mt-2">
+                  <p className="text-gray-400">Selected Image : {selectedImageName}</p>
+                </div>
+              )}
+              <div className="">
+                <div className="flex mt-2 mx-2">
+                  <button
+                    onClick={() => document.getElementById("fileInput").click()}
+                    className="w-full px-4 py-2 border border-teal-500 hover:bg-teal-800 text-white rounded-md mr-2"
+                  >
+                    Choose from Gallery
+                  </button>
+                  <button
+                    onClick={openCameraModal}
+                    className="w-full px-4 py-2 border border-teal-500 hover:bg-teal-800 text-white rounded-md"
+                  >
+                    Use Camera
+                  </button>
+                </div>
+
+
+                {downloadURL && (
+                  <div className="px-4 mt-4">
+                    <button
+                      onClick={() => deleteProfilePicture(user.uid)}
+                      className="block w-full py-2 px-4 border border-red-600 text-white hover:bg-red-800 rounded-md"
+                    >
+                      Delete Profile Picture
+                    </button>
+                  </div>
+                )}
+
+                <div className="px-4 mt-4">
+                  <button
+                    onClick={handleUpload}
+                    disabled={uploading}
+                    className="w-full py-2 px-4 border border-blue-600 text-white hover:bg-blue-800 rounded-md"
+                  >
+                    {uploading ? "Uploading..." : "Upload"}
+                  </button>
+                </div>
+              </div>
+              <div className="p-4">
+                <button
+                  onClick={() => setShowOptions(false)}
+                  className="w-full py-2 px-4 bg-red-500 text-white hover:bg-red-600 rounded-md"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
           </div>
         )}
+
+
       </div>
-      {error && <p className="error">{error}</p>}
       <CameraModal
         isOpen={isCameraModalOpen}
         onClose={() => setIsCameraModalOpen(false)}
@@ -193,6 +245,6 @@ export default function ProfilePhoto({ user }) {
         style={{ display: "none" }}
         onChange={handleFileChange}
       />
-    </div>
+    </div >
   );
 }

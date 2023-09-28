@@ -78,22 +78,33 @@ function EditProfile() {
     return (
         <div >
             <div className="mt-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">Edit Profile</h2>
+                <h2 className="text-2xl font-semibold text-white ">Edit Profile</h2>
                 <form>
-                    <div className="mb-4">
-                        <label className="text-white block">
-                            Display Name:
-                            <input
-                                className="border-2 border-black text-black rounded px-3 py-2"
-                                type="text"
-                                value={displayName}
-                                onChange={(e) => setDisplayName(e.target.value)}
+                    {/* <div className="mb-4">
+                        <p className='text-white'>Display Name: </p>
+                        <input
+                            className="border-2 border-black text-black rounded px-3 py-2"
+                            type="text"
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
+                        />
+
+                    </div> */}
+                    <div class="relative max-lg:mx-4">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="bi bi-person text-gray-300 mt-1.5"></i>
+                        </div>
+                        <input
+                            className="w-full px-4 py-3 border-0 border-b-2 hover:border-b-blue-500 mt-2 bg-[#1a1a1a] text-white pl-10"
+                            type="text"
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
                             />
-                        </label>
                     </div>
-                    <div className="mb-4">
+
+                    <div className="my-4">
                         <button
-                            className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                            className="border border-teal-700 hover:bg-teal-900 text-white font-bold py-2 px-4 rounded"
                             type="button"
                             onClick={handleUpdateDisplayName}
                         >

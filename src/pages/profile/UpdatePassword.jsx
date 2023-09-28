@@ -20,21 +20,31 @@ function UpdatePassword() {
 
   return (
     <div>
-      <h2>Update Password</h2>
+      {error && <p>{error}</p>}
       <form onSubmit={handleUpdatePassword}>
-        <label>
-          New Password:
+        <div class="relative max-lg:mx-4">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="bi bi-key text-gray-300 mt-1.5"></i>
+          </div>
           <input
+            className="w-full px-4 py-3 border-0 border-b-2 hover:border-b-blue-500 mt-2 bg-[#1a1a1a] text-white pl-10"
+            placeholder='New Password'
             type="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-        </label>
-        <br />
-        <button type="submit">Update Password</button>
+        </div>
+        <div className="my-4">
+          <button
+            className="border border-teal-700 hover:bg-teal-900 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            Update Password
+          </button>
+        </div>
       </form>
-      {error && <p>{error}</p>}
     </div>
+
   );
 }
 
