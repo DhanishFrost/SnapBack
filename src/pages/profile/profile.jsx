@@ -5,6 +5,7 @@ import EditProfile from './Editprofile';
 import UpdatePassword from './UpdatePassword';
 import DeleteAccount from './DeleteAccount';
 import ProfilePhoto from './ProfilePhoto';
+import CameraModal from './Camera';
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -51,7 +52,6 @@ function Profile() {
     });
 
     return () => {
-      // Unsubscribe from the listener when the component unmounts
       unsubscribe();
     };
   }, []);
