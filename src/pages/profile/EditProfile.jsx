@@ -90,9 +90,9 @@ function EditProfile() {
                         />
 
                     </div> */}
-                    <div class="relative max-lg:mx-4">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="bi bi-person text-gray-300 mt-1.5"></i>
+                    <div className="relative max-lg:mx-4">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i className="bi bi-person text-gray-300 mt-1.5"></i>
                         </div>
                         <input
                             className="w-full px-4 py-3 border-0 border-b-2 hover:border-b-blue-500 mt-2 bg-[#1a1a1a] text-white pl-10"

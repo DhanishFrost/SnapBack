@@ -3,12 +3,16 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {  auth } from "../../firebase_setup/firebase";
+import NotificationRequest, { useShowNotificationClick } from '../../Notifications/ShowNotification';
+
 
 export default function Login({ loggedIn, onLogin }) {
     const { register, handleSubmit, errors } = useForm();
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const baseUrl = process.env.NODE_ENV === "development" ? "/" : "/SnapBack/";
+
+    const handleShowNotificationClick = useShowNotificationClick();
 
     const onSubmit = async (data) => {
 
@@ -26,6 +30,8 @@ export default function Login({ loggedIn, onLogin }) {
                 setError("Email is not verified. Please check your email inbox and verify your email.");
                 return;
             }
+
+            handleShowNotificationClick();
 
             onLogin(true);
             localStorage.setItem("authToken", true);
@@ -108,7 +114,8 @@ export default function Login({ loggedIn, onLogin }) {
 
 
                             <button type="submit"
-                                className="w-full mt-6 text-center px-4 py-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white tracking-widest hover:bg-[#0a174a] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-150">
+                                className="w-full mt-6 text-center px-4 py-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white tracking-widest hover:bg-[#0a174a] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-150"
+                                >
                                 LOG IN
                             </button>
                         </div>

@@ -7,6 +7,7 @@ import DeleteAccount from './DeleteAccount';
 import ProfilePhoto from './ProfilePhoto';
 import CameraModal from './Camera';
 
+
 function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);

@@ -34,6 +34,14 @@ function GameBoard({
     }
   };
 
+  // Vibrate function
+  const vibratePhone = () => {
+    if ("vibrate" in navigator) {
+      // Vibrate for 200 milliseconds
+      navigator.vibrate(200);
+    }
+  };
+
   const handleGuess = (letter) => {
     onGuess(letter);
 
@@ -42,6 +50,7 @@ function GameBoard({
       setScore(score + 1);
     } else {
       playIncorrectAudio();
+      vibratePhone();
 
       if (gameStatus() === 'gameover') {
         resetScore();

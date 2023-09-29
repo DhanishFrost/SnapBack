@@ -41,7 +41,7 @@ function App() {
       setUser(null);
       setLoggedIn(false);
       localStorage.removeItem('authToken');
-      navigate("/SnapBack/home");
+      navigate("/SnapBack/");
     } catch (error) {
       console.log(error);
     } finally {
