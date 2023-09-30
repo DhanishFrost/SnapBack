@@ -3,7 +3,7 @@ import { auth, db } from '../../firebase_setup/firebase';
 import { getAuth, updateProfile, updateEmail, sendEmailVerification } from 'firebase/auth';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 
-function EditProfile() {
+function EditProfile({ updateUserName }) {
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [user, setUser] = useState(null);
@@ -11,15 +11,22 @@ function EditProfile() {
 
     useEffect(() => {
         // Listen for changes in the authentication state
-        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+        const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
             if (authUser) {
                 setUser(authUser);
-                setDisplayName(authUser.displayName || '');
-                setEmail(authUser.email || '');
+
+                // Fetch the user's display name from the database
+                const userDocRef = doc(db, 'users', authUser.uid);
+                const userDocSnapshot = await getDoc(userDocRef);
+
+                if (userDocSnapshot.exists()) {
+                    const userData = userDocSnapshot.data();
+                    if (userData.name) {
+                        setDisplayName(userData.name);
+                    }
+                }
             } else {
                 setUser(null);
-                setDisplayName('');
-                setEmail('');
             }
         });
 
@@ -28,6 +35,9 @@ function EditProfile() {
             unsubscribe();
         };
     }, []);
+
+
+
 
     const handleUpdateDisplayName = async () => {
         const auth = getAuth(); // Initialize Firebase Auth
@@ -40,7 +50,21 @@ function EditProfile() {
                 name: displayName,
             });
 
+            // Update display name in user_scores collection
+            const userScoresDocRef = doc(db, 'user_scores', user.uid);
+                const userScoresDocSnapshot = await getDoc(userScoresDocRef);
+
+                if (userScoresDocSnapshot.exists()) {
+                    await updateDoc(userScoresDocRef, {
+                        name: displayName,
+                    });
+                }
+
+            setDisplayName(displayName);
+
             console.log('Display name updated successfully!');
+            // Call the updateUserName function to update the name in Profile
+            updateUserName(displayName);
         } catch (error) {
             console.error('Error updating display name:', error);
         }
@@ -99,7 +123,7 @@ function EditProfile() {
                             type="text"
                             value={displayName}
                             onChange={(e) => setDisplayName(e.target.value)}
-                            />
+                        />
                     </div>
 
                     <div className="my-4">

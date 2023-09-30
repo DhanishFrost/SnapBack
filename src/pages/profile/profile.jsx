@@ -7,7 +7,6 @@ import DeleteAccount from './DeleteAccount';
 import ProfilePhoto from './ProfilePhoto';
 import CameraModal from './Camera';
 
-
 function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -57,6 +56,13 @@ function Profile() {
     };
   }, []);
 
+  const updateUserName = (newName) => {
+    setUser({
+      ...user,
+      name: newName,
+    });
+  };
+
   const handleSignOut = () => {
     auth.signOut().then(() => {
       console.log('Sign-out successful');
@@ -93,7 +99,7 @@ function Profile() {
 
               <div className="mt-8">
 
-                <EditProfile />
+                <EditProfile updateUserName={updateUserName} />
                 <UpdatePassword />
                 <DeleteAccount />
               </div>

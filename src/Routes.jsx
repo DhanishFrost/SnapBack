@@ -6,7 +6,7 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Games from './Games';
 import Leaderboard from './pages/hangman-pages/leaderboard';
-import Profile from './pages/profile/profile';
+import Profile from './pages/profile/Profile';
 
 export default function AppRoutes({ loggedIn, onLogin }) {
     return (
