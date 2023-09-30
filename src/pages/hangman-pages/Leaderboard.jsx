@@ -86,7 +86,7 @@ function Leaderboard() {
 
             <div className="max-lg:mx-10 max-lg:space-y-2 lg:flex justify-center mb-6 mt-16">
                 {leaderboardData.slice(0, 3).map((userData, index) => (
-                    <div key={userData.id} className={`bg-${index === 0 ? 'yellow' : index === 1 ? 'gray' : 'orange'}-400 bg-opacity-70 px-6 py-4 ${index === 0 ? 'lg:rounded-l-lg' : index === 1 ? '' : 'lg:rounded-r-lg'} shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 items-center flex`}>
+                    <div key={userData.id} className={`px-6 py-4 ${index === 0 ? 'lg:rounded-l-lg bg-yellow-400 bg-opacity-70' : index === 1 ? 'bg-gray-400 bg-opacity-70' : index === 2 ? 'bg-orange-400 bg-opacity-70 lg:rounded-r-lg' : ''} shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 items-center flex`}>
                         {index === 0 && <img src={`${baseUrl}gold.png`} alt="Gold Medal" className="w-10 inline-block mr-2" />}
                         {index === 1 && <img src={`${baseUrl}silver.png`} alt="Silver Medal" className="w-10 inline-block mr-2" />}
                         {index === 2 && <img src={`${baseUrl}bronze.png`} alt="Bronze Medal" className="w-10 inline-block mr-2" />}
