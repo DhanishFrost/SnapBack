@@ -7,7 +7,7 @@ export default function Games() {
         <div className="text-white p-6">
             <h1 className="text-3xl font-semibold mb-4">Games</h1>
             <div className="lg:flex lg:space-x-10 max-lg:space-y-6 max-lg:flex max-lg:flex-col max-lg:items-center ">
-                <Link to="/SnapBack/games/hangman">
+                <Link to="/SnapBack/gamesHangman">
                     <div className="max-lg:w-72 w-64 h-48 bg-cover bg-center border border-white rounded-lg shadow-md relative hover:scale-105 transition-transform">
                         <img
                             src={`${baseUrl}Hangman.jpg`}

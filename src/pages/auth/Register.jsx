@@ -86,7 +86,7 @@ export default function Register() {
 
             <div className="w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
                 <div className="w-full h-100">
-                    <img className="max-lg:w-16 w-24 mx-auto max-md:relative max-lg:bottom-12" src={`${baseUrl}/Snapback-Logo.png`} alt="SnapBack Logo" />
+                    <img className="max-lg:w-16 w-24 mx-auto max-md:relative max-lg:bottom-12" src={`${baseUrl}Snapback-Logo.png`} alt="SnapBack Logo" />
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-6 max-md:relative max-md:bottom-16">
                         <h1
                             className="font-[poppins] text-gray-200 text-center text-xl md:text-2xl font-semibold leading-tight mb-6 mt-10 max-md:mb-6 max-md:mt-6">

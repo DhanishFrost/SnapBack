@@ -4,14 +4,26 @@ import { updatePassword } from "firebase/auth";
 
 function UpdatePassword() {
   const [newPassword, setNewPassword] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); 
   const [error, setError] = useState(null);
 
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
 
+    if(newPassword.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    } else if (newPassword.length > 128) {
+      setError('Password must be less than 128 characters');
+      return;
+    }
+
     try {
       await updatePassword(auth.currentUser, newPassword);
       console.log('Password updated successfully!');
+      setError(null);
+      setNewPassword('');
+      setSuccessMessage('Password updated successfully!');
     } catch (error) {
       console.error('Error updating password:', error);
       setError(error.message);
@@ -20,7 +32,8 @@ function UpdatePassword() {
 
   return (
     <div>
-      {error && <p>{error}</p>}
+      {error && <p className='text-red-600'>{error}</p>}
+      {successMessage && <p className='text-green-600'>{successMessage}</p>}
       <form onSubmit={handleUpdatePassword}>
         <div className="relative max-lg:mx-4">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

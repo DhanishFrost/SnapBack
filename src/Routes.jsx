@@ -6,7 +6,7 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Games from './Games';
 import Leaderboard from './pages/hangman-pages/leaderboard';
-import Profile from './pages/profile/Profile';
+import Profile from './pages/profile/profile';
 
 export default function AppRoutes({ loggedIn, onLogin }) {
     return (
@@ -15,7 +15,7 @@ export default function AppRoutes({ loggedIn, onLogin }) {
             <Route path="/SnapBack/register" element={<Register />} />
             <Route path="/SnapBack/" element={<Home />} />
             <Route
-                path="/SnapBack/games/hangman"
+                path="/SnapBack/gamesHangman"
                 element={
                     loggedIn ? (
                         <HangManGame />
@@ -33,7 +33,7 @@ export default function AppRoutes({ loggedIn, onLogin }) {
                     )
                 }
             />
-            <Route path="/SnapBack/games/hangman/leaderboard" element={<Leaderboard />} />
+            <Route path="/SnapBack/gamesHangmanLeaderboard" element={<Leaderboard />} />
             <Route path="/SnapBack/profile" element={<Profile />} />
         </Routes>
     );

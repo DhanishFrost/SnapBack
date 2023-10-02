@@ -86,7 +86,7 @@ export default function Navigation({ loggedIn, onLogin, handleLogout }) {
                         </li>
                         <li className='mt-0.5'>
                         <Link
-                                to="/SnapBack/games/hangman/leaderboard"
+                                to="/SnapBack/gamesHangmanLeaderboard"
                                 className="text-white uppercase tracking-widest font-[poppins] hover:bg-[gray]/40 hover:border-b-2 border-[#FF3342] py-1 px-4 rounded-lg text-md font-semibold transition duration-300"
                             >
                                 Hangman LeaderBoard
@@ -146,7 +146,7 @@ export default function Navigation({ loggedIn, onLogin, handleLogout }) {
                         </li>
                         <li className='my-6'>
                         <Link
-                                to="/SnapBack/games/hangman/leaderboard"
+                                to="/SnapBack/gamesHangmanLeaderboard"
                                 className="text-white uppercase tracking-widest font-[poppins] hover:bg-[gray]/40 hover:border-b-2 border-[#FF3342] py-1 px-4 rounded-lg text-md font-semibold transition duration-300"
                             >
                                 Hangman LeaderBoard
