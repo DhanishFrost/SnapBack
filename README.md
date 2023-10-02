@@ -7,5 +7,5 @@
 An innovative Progressive Web App (PWA), SnapBack, extends an invitation for you to explore the world of online gaming. 
 
 SnapBack Website
-- [SnapBack](https://dhanishfrost.github.io/SnapBack/)
+- [Click here to visit the website](https://dhanishfrost.github.io/SnapBack/)
 
