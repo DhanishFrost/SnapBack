@@ -177,14 +177,14 @@ export default function Home() {
               </Link>
             </div>
             <div className="relative mb-10 m-8 flex items-center mx-auto">
-              <div className="w-[400px] lg:w-[900px] h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+              <div className="w-[350px] lg:w-[900px] h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
             </div>
             <div className='flex space-x-12'>
               <img className="w-20" src={`${baseUrl}Snapback-Logo.png`} alt="SnapBack Logo" />
               <img className="w-36" src={`${baseUrl}esrb.svg`} alt="ESRB Logo" />
             </div>
             <div className="relative mb-10 m-8 flex items-center mx-auto">
-              <div className="w-[400px] lg:w-[900px] h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+              <div className="w-[350px] lg:w-[900px] h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
             </div>
             <p className="px-6 text-lg font-thing tracking-wider mb-2 font-[impact]">&copy; {new Date().getFullYear()} SnapBack. All Rights Reserved.</p>
           </div>
