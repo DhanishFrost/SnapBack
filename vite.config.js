@@ -2,9 +2,13 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
+  build: {
+    outDir: 'dist', // Set the output directory to 'dist'
+  },
   plugins: [
     react(),
     VitePWA({
@@ -33,7 +37,30 @@ export default defineConfig({
             "type": "image/png"
           },
         ]
-        
+      },
+
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,png,jpg,svg,json,mp4,mp3,webp}'],
+        globDirectory: 'dist',
+        swDest: 'dist/sw.js',
+        skipWaiting: true,
+        clientsClaim: true,
+        runtimeCaching: [ 
+          {
+            urlPattern: new RegExp('^https://fonts.(?:googleapis|gstatic).com/(.*)'),
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'google-fonts',
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+              expiration: {
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+                maxEntries: 30,
+              },
+            },
+          },
+        ],
       },
     }),
   ],
